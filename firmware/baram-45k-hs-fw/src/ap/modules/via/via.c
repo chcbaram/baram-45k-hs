@@ -28,8 +28,8 @@ static const char *command_id_str[] =
   [id_unhandled]                            = "id_unhandled",
 };
 
-#define MATRIX_ROWS                         5
-#define MATRIX_COLS                         15
+#define MATRIX_ROWS                         4
+#define MATRIX_COLS                         12
 
 #define DYNAMIC_KEYMAP_MACRO_EEPROM_ADDR    0
 #define DYNAMIC_KEYMAP_MACRO_EEPROM_SIZE    1024

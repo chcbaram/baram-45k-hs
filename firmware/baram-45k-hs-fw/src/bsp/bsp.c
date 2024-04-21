@@ -4,6 +4,7 @@
 
 static void SystemClock_Config(void);
 
+static DCACHE_HandleTypeDef hdcache1;
 
 
 
@@ -25,6 +26,16 @@ bool bspInit(void)
   if (HAL_ICACHE_Enable() != HAL_OK)
   {
     ret = false;
+  }
+
+
+  __HAL_RCC_DCACHE1_CLK_ENABLE();
+  
+  hdcache1.Instance = DCACHE1;
+  hdcache1.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
+  if (HAL_DCACHE_Init(&hdcache1) != HAL_OK)
+  {
+    Error_Handler();
   }
 
   return ret;
@@ -78,10 +89,8 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
-  RCC_OscInitStruct.LSIDiv = RCC_LSI_DIV1;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMBOOST = RCC_PLLMBOOST_DIV1;
@@ -113,4 +122,3 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
-

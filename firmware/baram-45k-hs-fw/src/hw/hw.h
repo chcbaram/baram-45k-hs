@@ -17,6 +17,8 @@ extern "C" {
 #include "micros.h"
 #include "button.h"
 #include "keys.h"
+#include "spi.h"
+
 
 bool hwInit(void);
 

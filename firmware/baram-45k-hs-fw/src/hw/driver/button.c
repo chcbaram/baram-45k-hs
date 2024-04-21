@@ -34,8 +34,8 @@ static bool buttonGetPin(uint8_t ch);
 
 static const button_pin_t button_pin[BUTTON_MAX_CH] =
     {
-      {GPIOB, GPIO_PIN_6, GPIO_PULLDOWN, GPIO_PIN_SET, EXTI13_IRQn},  // 0. B1
-      {GPIOB, GPIO_PIN_7, GPIO_PULLDOWN, GPIO_PIN_SET, EXTI5_IRQn },  // 1. B2
+      {GPIOC, GPIO_PIN_6, GPIO_NOPULL, GPIO_PIN_SET, EXTI13_IRQn},  // 0. B1
+      {GPIOB, GPIO_PIN_7, GPIO_PULLUP, GPIO_PIN_SET, EXTI5_IRQn },  // 1. B2
     };
 
 
@@ -62,8 +62,9 @@ bool buttonInit(void)
     button_tbl[i].pressed        = false;
   }
 
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;  
-  for (int i=0; i<BUTTON_MAX_CH; i++)
+  GPIO_InitStruct.Mode  = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  for (int i = 0; i < BUTTON_MAX_CH; i++)
   {
     GPIO_InitStruct.Pin = button_pin[i].pin;
     GPIO_InitStruct.Pull = button_pin[i].pull;

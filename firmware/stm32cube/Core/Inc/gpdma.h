@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -32,7 +32,13 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
+extern DMA_NodeTypeDef Node_GPDMA1_Channel2;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel2;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel2;
+
+extern DMA_QListTypeDef pQueueLinkList;
 
 /* USER CODE BEGIN Private defines */
 

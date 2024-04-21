@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -55,11 +55,15 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern DMA_HandleTypeDef handle_GPDMA1_Channel13;
+extern DMA_NodeTypeDef Node_GPDMA1_Channel2;
+extern DMA_QListTypeDef List_GPDMA1_Channel2;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel2;
+extern PSSI_HandleTypeDef hpssi;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel1;
+extern SPI_HandleTypeDef hspi1;
 extern DMA_NodeTypeDef Node_GPDMA1_Channel0;
 extern DMA_QListTypeDef List_GPDMA1_Channel0;
 extern DMA_HandleTypeDef handle_GPDMA1_Channel0;
-extern PCD_HandleTypeDef hpcd_USB_OTG_HS;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -76,7 +80,7 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  while (1)
+   while (1)
   {
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
@@ -203,20 +207,6 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles EXTI Line13 interrupt.
-  */
-void EXTI13_IRQHandler(void)
-{
-  /* USER CODE BEGIN EXTI13_IRQn 0 */
-
-  /* USER CODE END EXTI13_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
-  /* USER CODE BEGIN EXTI13_IRQn 1 */
-
-  /* USER CODE END EXTI13_IRQn 1 */
-}
-
-/**
   * @brief This function handles GPDMA1 Channel 0 global interrupt.
   */
 void GPDMA1_Channel0_IRQHandler(void)
@@ -231,31 +221,59 @@ void GPDMA1_Channel0_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles USB OTG HS global interrupt.
+  * @brief This function handles GPDMA1 Channel 1 global interrupt.
   */
-void OTG_HS_IRQHandler(void)
+void GPDMA1_Channel1_IRQHandler(void)
 {
-  /* USER CODE BEGIN OTG_HS_IRQn 0 */
+  /* USER CODE BEGIN GPDMA1_Channel1_IRQn 0 */
 
-  /* USER CODE END OTG_HS_IRQn 0 */
-  HAL_PCD_IRQHandler(&hpcd_USB_OTG_HS);
-  /* USER CODE BEGIN OTG_HS_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel1_IRQn 0 */
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel1);
+  /* USER CODE BEGIN GPDMA1_Channel1_IRQn 1 */
 
-  /* USER CODE END OTG_HS_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel1_IRQn 1 */
 }
 
 /**
-  * @brief This function handles GPDMA1 Channel 13 global interrupt.
+  * @brief This function handles GPDMA1 Channel 2 global interrupt.
   */
-void GPDMA1_Channel13_IRQHandler(void)
+void GPDMA1_Channel2_IRQHandler(void)
 {
-  /* USER CODE BEGIN GPDMA1_Channel13_IRQn 0 */
+  /* USER CODE BEGIN GPDMA1_Channel2_IRQn 0 */
 
-  /* USER CODE END GPDMA1_Channel13_IRQn 0 */
-  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel13);
-  /* USER CODE BEGIN GPDMA1_Channel13_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel2_IRQn 0 */
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel2);
+  /* USER CODE BEGIN GPDMA1_Channel2_IRQn 1 */
 
-  /* USER CODE END GPDMA1_Channel13_IRQn 1 */
+  /* USER CODE END GPDMA1_Channel2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI1 global interrupt.
+  */
+void SPI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI1_IRQn 0 */
+
+  /* USER CODE END SPI1_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi1);
+  /* USER CODE BEGIN SPI1_IRQn 1 */
+
+  /* USER CODE END SPI1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DCMI/PSSI global interrupt.
+  */
+void DCMI_PSSI_IRQHandler(void)
+{
+  /* USER CODE BEGIN DCMI_PSSI_IRQn 0 */
+
+  /* USER CODE END DCMI_PSSI_IRQn 0 */
+  HAL_PSSI_IRQHandler(&hpssi);
+  /* USER CODE BEGIN DCMI_PSSI_IRQn 1 */
+
+  /* USER CODE END DCMI_PSSI_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

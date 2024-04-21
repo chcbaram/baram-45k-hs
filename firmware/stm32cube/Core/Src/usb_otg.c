@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -106,10 +106,6 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
     /*Configuring the SYSCFG registers OTG_HS PHY*/
     /*OTG_HS PHY enable*/
       HAL_SYSCFG_EnableOTGPHY(SYSCFG_OTG_HS_PHY_ENABLE);
-
-    /* USB_OTG_HS interrupt Init */
-    HAL_NVIC_SetPriority(OTG_HS_IRQn, 6, 0);
-    HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
   /* USER CODE BEGIN USB_OTG_HS_MspInit 1 */
 
   /* USER CODE END USB_OTG_HS_MspInit 1 */
@@ -127,9 +123,6 @@ void HAL_PCD_MspDeInit(PCD_HandleTypeDef* pcdHandle)
     /* Peripheral clock disable */
     __HAL_RCC_USB_OTG_HS_CLK_DISABLE();
     __HAL_RCC_USBPHYC_CLK_DISABLE();
-
-    /* USB_OTG_HS interrupt Deinit */
-    HAL_NVIC_DisableIRQ(OTG_HS_IRQn);
   /* USER CODE BEGIN USB_OTG_HS_MspDeInit 1 */
 
   /* USER CODE END USB_OTG_HS_MspDeInit 1 */
